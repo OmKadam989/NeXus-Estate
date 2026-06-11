@@ -1,12 +1,35 @@
 # 🏡 NeXus Estate — House Price Prediction
 
-A machine learning project that predicts median house values using the **Boston Housing Dataset**, built with scikit-learn. The model is trained, evaluated with cross-validation, and exported as a reusable `.joblib` file.
+A machine learning project that predicts median house values using the **Boston Housing Dataset**, built with scikit-learn. Deployed as a live web app with a FastAPI backend and a custom HTML/CSS/JS frontend.
+
+🔗 **Live Demo:** [nexus-estate-cf27.onrender.com](https://nexus-estate-cf27.onrender.com)
+
+---
+
+## 📸 Preview
+
+> Fill in the form with property details and get an instant price estimate.
+
+<img width="745" height="791" alt="image" src="https://github.com/user-attachments/assets/5714692e-6ab7-4acb-bdf4-1f3800f40380" />
+
+
+**Sample prediction** — First row of the Boston Housing Dataset:
+
+| Field | Value | Field | Value |
+|-------|-------|-------|-------|
+| CRIM | 0.00632 | RAD | 1 |
+| ZN | 18.0 | TAX | 296 |
+| INDUS | 2.31 | PTRATIO | 15.3 |
+| CHAS | 0 | B | 396.9 |
+| NOX | 0.538 | LSTAT | 4.98 |
+| RM | 6.575 | AGE | 65.2 |
+| DIS | 4.09 | **Predicted MEDV** | **~$29,000** |
 
 ---
 
 ## 📌 Project Overview
 
-NeXus Estate uses a **Random Forest Regressor** to predict the median value of owner-occupied homes (`MEDV`) based on 13 socioeconomic and geographic features. The project covers the full ML pipeline: data loading → EDA → preprocessing → model training → evaluation → saving.
+NeXus Estate uses a **Random Forest Regressor** to predict the median value of owner-occupied homes (`MEDV`) based on 13 socioeconomic and geographic features. The project covers the full ML pipeline: data loading → EDA → preprocessing → model training → evaluation → deployment.
 
 ---
 
@@ -14,9 +37,12 @@ NeXus Estate uses a **Random Forest Regressor** to predict the median value of o
 
 ```
 NeXus-Estate/
-├── ML_proj_1.ipynb       # Main Jupyter Notebook
+├── app.py                # FastAPI backend
+├── index.html            # Frontend UI
+├── ML_proj_1.ipynb       # Jupyter Notebook (training)
 ├── housing.data          # Boston Housing Dataset
 ├── Nexus_Estate.joblib   # Saved trained model
+├── requirements.txt
 └── README.md
 ```
 
@@ -58,35 +84,6 @@ NeXus-Estate/
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-```bash
-pip install numpy pandas matplotlib scikit-learn joblib
-```
-
-### Run the Notebook
-
-```bash
-git clone https://github.com/your-username/NeXus-Estate.git
-cd NeXus-Estate
-jupyter notebook ML_proj_1.ipynb
-```
-
-### Load the Saved Model
-
-```python
-from joblib import load
-import numpy as np
-
-model = load('Nexus_Estate.joblib')
-# Pass a preprocessed sample to predict
-# prediction = model.predict(prepared_data)
-```
-
----
-
 ## 📈 Results
 
 | Metric | Value |
@@ -95,19 +92,34 @@ model = load('Nexus_Estate.joblib')
 | Evaluation | 10-Fold Cross Validation |
 | Metric | RMSE (Root Mean Squared Error) |
 
-> Final RMSE on test set printed at the end of the notebook.
+---
+
+## 🌐 Deployment
+
+- **Backend:** FastAPI served via Uvicorn
+- **Frontend:** Vanilla HTML/CSS/JS
+- **Hosting:** [Render.com](https://render.com) (free tier)
+
+### Run locally
+
+```bash
+git clone https://github.com/OmKadam989/NeXus-Estate.git
+cd NeXus-Estate
+pip install -r requirements.txt
+uvicorn app:app --reload
+```
+
+Then open `http://127.0.0.1:8000`
 
 ---
 
 ## 🛠️ Tech Stack
 
-- Python 3.x
-- Pandas
-- NumPy
-- Matplotlib
-- Scikit-learn
-- Joblib
-- Jupyter Notebook
+- Python 3.x · Pandas · NumPy · Matplotlib
+- Scikit-learn · Joblib
+- FastAPI · Uvicorn
+- HTML / CSS / JavaScript
+- Render (deployment)
 
 ---
 
